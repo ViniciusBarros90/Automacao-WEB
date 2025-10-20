@@ -1,0 +1,11 @@
+{
+  "name": "QA Tester",
+  "lastName": "PGATS",
+  "email": "hello@cypress.io",
+  "subject": "Support",
+  "message": "Testing using fuzture and upload",
+  "body": "Fixtures are a great way to mock data for responses to routes",
+  "user": "qatester@teste.com",
+  "pass": "senha123"
+
+}
