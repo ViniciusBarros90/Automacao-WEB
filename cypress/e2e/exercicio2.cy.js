@@ -1,10 +1,9 @@
-describe('Cadastrar entradas e saídas com bugs', () => {
-beforeEach(() => {
-  cy.visit('https://devfinance-agilizei.netlify.app', { timeout: 120000 })
-})
 
+describe('Cadastrar entradas e saídas com bugs', () => {
   it('Cadastrar uma nova transação de entrada - falha 1', () => {
-        
+    cy.visit('https://devfinance-agilizei.netlify.app', { timeout: 290000 })
+
+    
     cy.contains("Nova Transação").click()
     cy.get('input#description').type("Mesada")
     cy.get('input#amount').type(100)
