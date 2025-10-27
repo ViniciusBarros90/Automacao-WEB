@@ -3,4 +3,7 @@ package-lock.json
 cypress/videos/
 cypress/screenshots/
 cypress/reports/
+log/
+results/
+npm_install_debug.log/
 

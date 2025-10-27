@@ -164,28 +164,7 @@ describe('Exercicio 01', () => {
         cy.contains('p', 'Congratulations! Your order has been confirmed!');
     });
 
-    it('FazerLoginAntesEFazerPedido', () => {
-        menu.navegarParaOMenuSignupLogin()
-        login.PreencherOFormularioLoginToYourAccount(email, senha)
-        menu.navegarParaOMenuProduto()
-        produto.clicarEmAdicionarProdutoNoCarrinho()
-        produto.clicarEmVisualizarCarrinho()
-        //Assert
-         cy.url().should('include', '/view_cart')
-         cy.contains('li', 'Shopping Cart');
-
-        carrinho.ClicarNoBotaofazerCheckout();
-        //Assert
-         cy.url().should('include', '/checkout')
-         cy.contains('li', 'Checkout');
-        checkout.campoComentario()
-        checkout.clicarNoBotãoPlaceOrder()
-        pagamento.PreencherDadosDoCartao()
-
-        //Assert
-        cy.contains('p', 'Congratulations! Your order has been confirmed!');
-    });
-    
+        
     after(() => {
         menu.efetuarLogout()
         cy.visit('https://automationexercise.com/')

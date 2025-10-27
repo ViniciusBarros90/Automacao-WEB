@@ -11,3 +11,6 @@ export function getRandomEmail() {
 export function getSenha() {
     return faker.internet.password({ length: 6 });
 }
+
+
+
