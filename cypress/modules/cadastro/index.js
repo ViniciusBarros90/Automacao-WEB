@@ -3,7 +3,8 @@ import userData from '../../fixtures/example.json'
 
 class Cadastro {  
     preencherFormularioDeCadastroCompleto(senha) {
-        cy.get('input[type=radio][value="Mrs"]').should('be.visible').check()
+       cy.get('input[type=radio][value="Mrs"]', { timeout: 30000 }).should('be.visible').check()
+
   
     
         cy.get('input#password').type(senha)

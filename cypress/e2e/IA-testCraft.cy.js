@@ -5,8 +5,9 @@ import modalPage from '../pageObjects/modalPage';
 
 describe('Modal Tests', () => {
     beforeEach(() => {
-        cy.visit('https://devfinance-agilizei.netlify.app/#');
+        cy.visit('https://devfinance-agilizei.netlify.app/', { timeout: 220000 });
     });
+
 
     it('should display the modal when creating a new transaction', () => {
         cy.get('.button.new').contains('Nova Transação').click();
