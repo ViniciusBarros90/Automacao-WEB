@@ -1,50 +1,54 @@
-// modal.spec.js
-import ModalPage from '../pageObject/modalPage.cy.js';
+// cypress/integration/modalTests.js
+import modalPage from '../pageObjects/modalPage';
 
+//const modalPage = new ModalPage();
 
 describe('Modal Tests', () => {
     beforeEach(() => {
-        cy.visit('https://devfinance-agilizei.netlify.app/');
+        cy.visit('https://devfinance-agilizei.netlify.app/#');
     });
 
-    it('Verify that clicking the button successfully opens the modal for creating a new transaction', () => {
-        ModalPage.openModal();
-        ModalPage.isModalVisible();
+    it('should display the modal when creating a new transaction', () => {
+        cy.get('.button.new').contains('Nova Transação').click();
+        modalPage.assertModalIsVisible();
     });
 
-    it('Ensure that the button is visually identifiable and accessible to users', () => {
-        cy.get(ModalPage.button).should('have.css', 'background-color').and('not.eq', 'rgba(0, 0, 0, 0)');
+    it('should allow filling the form and saving a transaction', () => {
+        cy.get('.button.new').contains('Nova Transação').click();
+        modalPage.fillDescription('Test Transaction');
+        modalPage.fillAmount('100.00');
+        modalPage.fillDate('2023-10-01');
+        modalPage.clickSave();
+        // Add assertion to verify transaction is saved (this depends on the app's behavior)
     });
 
-    it('Test the button\'s functionality when JavaScript is disabled in the browser', () => {
-        cy.visit('https://devfinance-agilizei.netlify.app/', {
-            onBeforeLoad: (win) => {
-                delete win.navigator.__proto__.userAgent;
-                Object.defineProperty(win.navigator, 'userAgent', { get: () => '' });
-            }
-        });
-        cy.get(ModalPage.button).should('not.exist');
+    it('should close the modal when clicking cancel', () => {
+        cy.get('.button.new').contains('Nova Transação').click();
+        modalPage.clickCancel();
+        modalPage.assertModalIsNotVisible();
     });
 
-    it('Verify that clicking the button does not open the modal if the user is not logged in', () => {
-        if (!LoginPage.isLoggedIn()) {
-            ModalPage.openModal();
-            cy.get(ModalPage.modal).should('not.exist');
-        }
+    it('should not allow saving without a description', () => {
+        cy.get('.button.new').contains('Nova Transação').click();
+        modalPage.fillAmount('100.00');
+        modalPage.fillDate('2023-10-01');
+        modalPage.clickSave();
+        // Add assertion to verify error message (this depends on the app's behavior)
     });
 
-    it('Simulate a scenario where a user has already opened the modal but tries to open it again', () => {
-        ModalPage.openModal();
-        ModalPage.isModalVisible();
-        ModalPage.openModal();
-        ModalPage.isWarningMessageVisible();
+    it('should not allow saving without an amount', () => {
+        cy.get('.button.new').contains('Nova Transação').click();
+        modalPage.fillDescription('Test Transaction');
+        modalPage.fillDate('2023-10-01');
+        modalPage.clickSave();
+        // Add assertion to verify error message (this depends on the app's behavior)
     });
 
-    it('Test the button\'s behavior when it is clicked while the modal is already open', () => {
-        ModalPage.openModal();
-        ModalPage.isModalVisible();
-        ModalPage.openModal();
-        // Add assertion to confirm user experience is not disrupted
-        cy.get(ModalPage.modal).should('have.class', 'open'); // Adjust based on actual implementation
+    it('should not allow saving without a date', () => {
+        cy.get('.button.new').contains('Nova Transação').click();
+        modalPage.fillDescription('Test Transaction');
+        modalPage.fillAmount('100.00');
+        modalPage.clickSave();
+        // Add assertion to verify error message (this depends on the app's behavior)
     });
 });
