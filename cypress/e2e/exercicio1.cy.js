@@ -5,7 +5,7 @@ import userData from '../fixtures/example.json'
 import { getRandomEmail, getSenha } from "../support/helpers.js"
 import {faker} from '@faker-js/faker';
 
-describe('Exercicio 01', () => {
+describe('Exercicio 01 - xpath', () => {
     
     beforeEach(() => {
         cy.visit('https://automationexercise.com/')

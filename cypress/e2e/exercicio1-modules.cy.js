@@ -13,7 +13,7 @@ import checkout from '../modules/Checkout';
 import pagamento from '../modules/Pagamento';
 
 
-describe('Exercicio 01', () => {
+describe('Exercicio 01 - modules', () => {
 
     let email;
     const senha = userData.pass;

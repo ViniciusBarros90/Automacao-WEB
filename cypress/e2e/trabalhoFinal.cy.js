@@ -13,14 +13,15 @@ import checkout from '../modules/Checkout';
 import pagamento from '../modules/Pagamento';
 
 
-describe('Exercicio 01', () => {
+describe('Trabalho final', () => {
 
     let email;
     const senha = userData.pass;
+    const urlBase = 'https://automationexercise.com/'
 
     before(() => {
         email = getRandomEmail();
-        cy.visit('https://automationexercise.com/');
+        cy.visit(urlBase);
         menu.navegarParaOMenuSignupLogin();
         login.preencherFormularioNewUserSignup(email);
         cadastro.preencherFormularioDeCadastroCompleto(senha);
@@ -29,9 +30,8 @@ describe('Exercicio 01', () => {
     });
 
     beforeEach(() => {
-        cy.visit('https://automationexercise.com/')
-        //cy.navegarParaOMenuSignupLogin()
-    });
+        cy.visit(urlBase)
+     });
 
 
     it('Login com email e senha corretas', () => {
@@ -53,7 +53,6 @@ describe('Exercicio 01', () => {
     });
 
     it('Logout', () => {
-
         menu.navegarParaOMenuSignupLogin()
 
         login.PreencherOFormularioLoginToYourAccount(email, senha)
@@ -136,9 +135,7 @@ describe('Exercicio 01', () => {
         .should('be.visible')
         .and('contain', 'You have been successfully subscribed!');              
             
-    });
-
-    
+    });    
 
     it('RegistrarAntesEFazerPedido', () => {
         menu.navegarParaOMenuSignupLogin()
@@ -163,7 +160,6 @@ describe('Exercicio 01', () => {
         //Assert
         cy.contains('p', 'Congratulations! Your order has been confirmed!');
     });
-
         
     after(() => {
         menu.efetuarLogout()
@@ -171,13 +167,11 @@ describe('Exercicio 01', () => {
         menu.navegarParaOMenuSignupLogin()
         login.PreencherOFormularioLoginToYourAccount(email, senha)
 
-        //cy.contains('Logged in as QA Teste').should('be.visible');
         menu.DeletarConta()
         //Assert
         cy.contains('Account Deleted!').should('be.visible');        
     })
-
-    
+  
 
 });
     
