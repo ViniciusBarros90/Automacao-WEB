@@ -2,7 +2,7 @@
 describe('Cadastrar entradas e saídas com bugs', () => {
 
    beforeEach(() => {
-        cy.visit('https://devfinance-agilizei.netlify.app/', { timeout: 900000 });
+        cy.visit('https://devfinance-agilizei.netlify.app/', { timeout: 2000000 });
     });
 
 

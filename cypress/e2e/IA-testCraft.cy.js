@@ -5,7 +5,7 @@ import modalPage from '../pageObjects/modalPage';
 
 describe('Modal Tests', () => {
     beforeEach(() => {
-        cy.visit('https://devfinance-agilizei.netlify.app/', { timeout: 900000 });
+        cy.visit('https://devfinance-agilizei.netlify.app/', { timeout: 2000000 });
     });
 
 
